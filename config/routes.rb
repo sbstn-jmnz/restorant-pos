@@ -1,8 +1,11 @@
 Rails.application.routes.draw do  
-  resources :dishes
+  resources :dishes do
+    resources :orders
+  end
 
   root 'ingredients#index'
   resources :ingredients
+  resources :orders
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

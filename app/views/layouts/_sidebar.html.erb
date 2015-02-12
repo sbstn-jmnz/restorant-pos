@@ -3,5 +3,6 @@
 	<ul class="nav nav-sidebar">
 		<li class="<%= @controllerName == 'Ingredient' ? 'active' : '' %>"><%= link_to 'Ingredientes', ingredients_path %></li>
 		<li class="<%= @controllerName == 'Dishe' ? 'active' : '' %>"><%= link_to 'Platos', dishes_path %></li>
+		<li class="<%= @controllerName == 'Order' ? 'active' : '' %>"><%= link_to 'Pedido', orders_path %></li>
 	</ul>
 </div>
