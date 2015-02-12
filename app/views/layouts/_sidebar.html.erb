@@ -2,5 +2,6 @@
 	<!-- sidebar content muestra en el titulo como el nombre del controlador actual esto esta seteado en aplication_controller -->
 	<ul class="nav nav-sidebar">
 		<li class="<%= @controllerName == 'Ingredient' ? 'active' : '' %>"><%= link_to 'Ingredientes', ingredients_path %></li>
+		<li class="<%= @controllerName == 'Dishe' ? 'active' : '' %>"><%= link_to 'Platos', dishes_path %></li>
 	</ul>
 </div>

@@ -11,10 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212135643) do
+ActiveRecord::Schema.define(version: 20150212155834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "details", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "dish_id"
+    t.integer  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "details", ["dish_id"], name: "index_details_on_dish_id", using: :btree
+  add_index "details", ["order_id"], name: "index_details_on_order_id", using: :btree
+
+  create_table "dishes", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredient_dishes", force: :cascade do |t|
+    t.integer  "dish_id"
+    t.integer  "ingredient_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "ingredient_dishes", ["dish_id"], name: "index_ingredient_dishes_on_dish_id", using: :btree
+  add_index "ingredient_dishes", ["ingredient_id"], name: "index_ingredient_dishes_on_ingredient_id", using: :btree
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
@@ -22,6 +50,15 @@ ActiveRecord::Schema.define(version: 20150212135643) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "condition"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "role"
@@ -47,4 +84,9 @@ ActiveRecord::Schema.define(version: 20150212135643) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "details", "dishes"
+  add_foreign_key "details", "orders"
+  add_foreign_key "ingredient_dishes", "dishes"
+  add_foreign_key "ingredient_dishes", "ingredients"
+  add_foreign_key "orders", "users"
 end
