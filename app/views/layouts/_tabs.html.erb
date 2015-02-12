@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="col-xs-12">
+		<% flash.each do |name, msg| -%>
+		<%= content_tag :div, msg, class: "alert alert-#{name}" %>
+		<% end -%>
+	</div>
+</div>
+
+<!--Esto es lo que renderea los tabs desde cada uno de los controladores en cualquiera de sus acciones -->	
+<ul class="nav nav-tabs" role="tablist">
+	<li class=<%= @acctionName == "index" ? "active" : "" %>><%= link_to 'View list',
+	controller: @controllerName.downcase.pluralize %></li>
+	<li class=<%= @acctionName == "new" ? "active" : "" %>><%= link_to "New #{@controllerName.to_s.downcase}",controller: @controllerName.downcase.pluralize, action: 'new' %></li>
+</ul>
