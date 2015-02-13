@@ -1,0 +1,11 @@
+<%= form_for(@user, :html => {:class => "form-inline"} ) do |f| %>
+  <div class="field from-user">
+    <%= f.label :name%>
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.label :email%>
+    <%= f.text_field :email, class: "form-control" %>
+    <%= f.label :role%>
+    <%= f.text_field :role, class: "form-control" %>
+    <%= f.submit class:'btn btn-primary'%>
+  </div>
+<% end %>

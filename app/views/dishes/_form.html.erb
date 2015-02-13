@@ -1,25 +1,6 @@
-<%= form_for(@dish) do |f| %>
-  <% if @dish.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@dish.errors.count, "error") %> prohibited this dish from being saved:</h2>
-
-      <ul>
-      <% @dish.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.number_field :price %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for @dish, remote: true do |f|   %>
+  <%= f.input  :name, as: :string           %>
+  <%= f.input  :description, as: :text           %>
+  <%= f.input  :price,    as: :integer %>
+  <%= f.button :submit %>
 <% end %>

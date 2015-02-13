@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
-
+layout 'bootstrap'
   # GET /ingredients
   # GET /ingredients.json
   def index
