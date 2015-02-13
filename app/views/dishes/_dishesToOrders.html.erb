@@ -1,0 +1,10 @@
+<li class="list-group-item list-group-item-info">
+  <%= dish.description %>
+  <%= dish.name %>
+  <span class=""><%= dish.price.to_s %></span>
+   <span class="edit">
+    <%= link_to add_url(id: order.id, id2: dish.id) do %>
+      <button class="btn btn-primary btn-xs">Agregar</button>
+    <% end %>
+  </span>
+</li>

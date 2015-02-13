@@ -1,13 +1,19 @@
 Rails.application.routes.draw do  
-  resources :dishes do
-    resources :orders
+  
+  resources :orders
+  get 'orders/:id/add/:id2' => 'orders#add', as: :add
+  
+  resources :dishes
+
+  resources :orders do
+    resources :details
   end
   root 'ingredients#index'
   resources :ingredients
-  resources :orders
+  
   devise_for :users
   resources :users
-  match ':controller(/:action(/:id))', :via => [:get, :post]
+  #match ':controller(/:action(/:id))', :via => [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
