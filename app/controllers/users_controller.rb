@@ -20,7 +20,6 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    redirect_to "registrtrations/new2.html.erb"
   end
 
   # GET /users/1/edit
