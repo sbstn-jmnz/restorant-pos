@@ -2,8 +2,13 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-2" id="order-list" style="display:none"></div>
 </div>
+
 <% if !@order.nil? %>
-    <%= @order.to_json({:include => :dishes}) %>
+    <% @order.each do |dish, count| %>
+
+    	<%= dish %>
+    	<%= count %>
+    <% end %>
   <% end %>
 <%= render 'form' %>
 <%= render :partial => 'dishes/dishesToOrders', collection:  @dishes, as: :dish, locals: {

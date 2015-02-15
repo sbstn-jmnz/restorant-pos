@@ -1,18 +1,26 @@
 Rails.application.routes.draw do  
   
-  resources :orders
-  get 'orders/add/:id2' => 'orders#add', as: :add
+  #get 'orders/add/:id2' => 'orders#add', as: :add
   
   resources :dishes
 
   resources :orders do
     resources :details
   end
+  get 'orders/add/:id2' => 'orders#add', as: :add
+  
   root 'ingredients#index'
   resources :ingredients
   
-  devise_for :users
-  resources :users
+  devise_for :users, controllers: {sessions: "users/sessions"}
+  devise_scope :users do
+    get 'users', to: 'users#index'
+    get 'user/:id', to: 'users#show', as: 'user'
+    get 'user/:id/edit', to: 'users#edit', as: 'edit_user'
+    get 'user/new', to: 'users#new', as: 'new_user'
+    patch 'user/:id', to: 'users#update', as: ''
+    put 'user/:id', to: 'users#update', as: ''
+  end
   #match ':controller(/:action(/:id))', :via => [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

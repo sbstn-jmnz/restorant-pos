@@ -8,16 +8,16 @@ layout 'bootstrap'
 
 	def new
 		@dishes = Dish.all
-		@order = Order.includes(:dishes).find(params[:order_id]) if params.has_key?(:order_id)
+		@order = Order.find(params[:order_id]).dishes.group("name").count if params.has_key?(:order_id)
 	end
 
 	def add
-		order_id = params[:order_id]
-		if order_id.nil?
+		@order_id = params[:order_id]
+		if @order_id.nil?
 			@order = Order.new()
 			@order.user_id = current_user.id
 		else
-			@order = Order.find(order_id)
+			@order = Order.find(@order_id)
 		end
 		@dish = Dish.find(params[:id2])
 		@order.dishes << @dish
