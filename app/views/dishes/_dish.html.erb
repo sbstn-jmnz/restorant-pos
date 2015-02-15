@@ -4,6 +4,12 @@
   <span class=""><%= dish.price.to_s %></span>
 
   <span class="edit">
+
+    <%= link_to do %>
+      <button class="btn btn-danger btn-xs">Delete!</button>
+    <% end %>
+
+
     <%= link_to edit_dish_path(dish), remote: true do %>
       <button class="btn btn-primary btn-xs">Edit</button>
     <% end %>

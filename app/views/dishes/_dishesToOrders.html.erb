@@ -3,13 +3,10 @@
   <%= dish.description %>
   <%= dish.name %>
   <span class=""><%= dish.price.to_s %></span>
-   <span class="edit">
-    
-    <% if @order.nil? %>
-      <%= link_to "Agregar", add_url(id2: dish.id), class:"btn btn-primary" %>
-    <% else %>  
-      <%= link_to "Agregar", add_url(id2: dish.id) + "?order_id=" + @order_id.to_s, class:"btn btn-primary" %>
-    <% end %>
-    
-  </span>
+  <% if @order_id.nil? %>
+	  <%= link_to "Agregar", orders_path(dish_id: dish.id), method: :post, class: 'btn btn-primary' %>
+  <% else %>
+	  <%= link_to "Agregar", order_path(dish_id: dish.id), method: :patch, class: 'btn btn-primary' %>
+  <% end %>
+
 </li>

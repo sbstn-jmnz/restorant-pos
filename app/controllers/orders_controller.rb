@@ -8,24 +8,30 @@ layout 'bootstrap'
 
 	def new
 		@dishes = Dish.all
-		@order = Order.find(params[:order_id]).dishes.group("name").count if params.has_key?(:order_id)
 	end
 
-	def add
-		@order_id = params[:order_id]
-		if @order_id.nil?
-			@order = Order.new()
-			@order.user_id = current_user.id
-		else
-			@order = Order.find(@order_id)
-		end
-		@dish = Dish.find(params[:id2])
-		@order.dishes << @dish
+	def create
+		@order = Order.new()
+		#@order.user_id = current_user.id
 		@order.save
-		redirect_to "/orders/new?order_id=" + @order.id.to_s
+		@order.dishes << Dish.find(params[:dish_id])
+		redirect_to	edit_order_path(@order)
+	end
+
+	def edit
+		@orders = Order.find(params[:id]).dishes.group("name").count
+		@dishes = Dish.all
+		@order_id = Order.find(params[:id])
+	end
+
+	def update
+		@order = Order.find(params[:id])
+		@order.dishes << Dish.find(params[:dish_id])
+		@order.save
+		redirect_to	edit_order_path(@order)		
 	end
 
 	def order_params
-    params.require(:order).permit(:title, :content, :created_at)
-  end
+    	params.require(:order).permit(:title, :content, :created_at)
+    end
 end
