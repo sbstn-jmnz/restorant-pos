@@ -1,8 +1,9 @@
 <h1> Pedido actual </h1>
 <% @orders.each do |dish, cuenta| %>
 	<p> <%= dish %> (<%= cuenta %>) </p>
-
 <% end %>
+<p><%= @orders2 %></p>
+<p>Total = <%= @suma %></p>
 
 <h1>Agregar Plato</h1>
 <div class="row">

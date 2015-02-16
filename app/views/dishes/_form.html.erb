@@ -1,6 +1,17 @@
-<%= simple_form_for @dish, remote: true do |f|   %>
-  <%= f.input  :name, as: :string           %>
-  <%= f.input  :description, as: :text           %>
-  <%= f.input  :price,    as: :integer %>
-  <%= f.button :submit %>
-<% end %>
+<div class="container">
+	<%= simple_form_for @dish, remote: true do |f|   %>
+		<div class="field">
+	  <%= f.label :name %><br>
+    <%= f.text_field :name %>
+	  </div>
+	  <div class="field">
+	  	<%= f.label :description %><br>
+	  	<%= f.text_area :description %>
+	  </div>
+	  <div class="field">
+	  	<%= f.label :price %><br>
+    	<%= f.number_field :price %>
+	  </div>
+	  <%= f.button :submit %>
+	<% end %>
+</div>

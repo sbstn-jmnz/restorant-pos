@@ -2,8 +2,12 @@ class OrdersController < ApplicationController
 layout 'bootstrap'
 
 	def index
-		@orders = Order.all.includes(:dishes)
-
+		#@orders = Order.all.includes(:dishes)
+		if user_signed_in?
+			@mis_ordenes = current_user.orders
+		elsif current_user.role == "admin"
+			@orders = Order.all.includes(:dishes)
+		end
 	end
 
 	def new
@@ -12,7 +16,7 @@ layout 'bootstrap'
 
 	def create
 		@order = Order.new()
-		#@order.user_id = current_user.id
+		@order.user_id = current_user.id
 		@order.save
 		@order.dishes << Dish.find(params[:dish_id])
 		redirect_to	edit_order_path(@order)
@@ -20,6 +24,7 @@ layout 'bootstrap'
 
 	def edit
 		@orders = Order.find(params[:id]).dishes.group("name").count
+		@suma = Order.find(params[:id]).dishes.sum("price")
 		@dishes = Dish.all
 		@order_id = Order.find(params[:id])
 	end

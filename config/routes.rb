@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :dishes
 
   resources :orders do
-    resources :details
+    resources :dishes
   end
   get 'orders/add/:id2' => 'orders#add', as: :add
   
