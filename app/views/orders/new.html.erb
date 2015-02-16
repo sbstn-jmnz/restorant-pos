@@ -1,9 +1,13 @@
-<h1>Agregar Plato</h1>
-<div class="row">
-  <div class="col-md-6 col-md-offset-2" id="order-list" style="display:none"></div>
-</div>
+<% if user_signed_in? %>
+	<h1>Agregar Plato</h1>
+	<div class="row">
+	  <div class="col-md-6 col-md-offset-2" id="order-list" style="display:none"></div>
+	</div>
 
-<%= render 'form' %>
-<%= render :partial => 'dishes/dishesToOrders', collection:  @dishes, as: :dish, locals: {
-	order: @order}  %>
-<%= link_to 'Back', orders_path %>
+	<%= render 'form' %>
+	<%= render :partial => 'dishes/dishesToOrders', collection:  @dishes, as: :dish, locals: {
+		order: @order}  %>
+	<%= link_to 'Back', orders_path %>
+<% else  %>
+	<%= link_to 'Ingresar', new_user_session_path %>
+<% end  %>

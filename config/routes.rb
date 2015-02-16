@@ -10,11 +10,16 @@ Rails.application.routes.draw do
   get 'orders/add/:id2' => 'orders#add', as: :add
   
   
-  devise_for :users, controllers: {sessions: "users/sessions"}
+  devise_for :users
+  devise_scope :users do
+    get 'users', to: 'users#index'
+    #get 'users/sign_in', to: 'users/sessions#new', as: 'new_user_session'
+    #post 'users/sign_in', to: 'users/sessions#create', as: 'user_session' 
+  end
+
   resources :users
 
-  resources :dishes
-
+  #resources :users
   #match ':controller(/:action(/:id))', :via => [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

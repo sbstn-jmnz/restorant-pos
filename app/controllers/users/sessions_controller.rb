@@ -8,10 +8,24 @@ class Users::SessionsController < Devise::SessionsController
 
   def new
     @user = User.new
-    redirect_to "registrtrations/new2.html.erb"
+    redirect_to "/registrations/new.html.erb"
   end
 
   def show
+  end
+
+  def create
+    @user = User.new(user_params)
+    respond_to do |format|
+      if @user.save
+        flash[:success] = 'User was successfully created.'
+        format.html { redirect_to @user }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
