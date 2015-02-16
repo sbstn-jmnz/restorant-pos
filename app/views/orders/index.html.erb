@@ -1,7 +1,18 @@
-
-
 <% if user_signed_in? %>
     <% @mis_ordenes.each do |orden| %>
-      <%= orden.dishes %>
+    	<div class="jumbotron">
+	    	<div class="container">
+	      		<h3><%= orden.id %></h3>
+	      		<% orden.cuenta.each do |clave, valor| %>
+	      			<%= clave %> x<%= valor %><br>
+	      		<% end %>
+	      		<%= orden.condition %>
+	      		Total = $<%= orden.suma %>
+	      		<%= form_for orden, url: estado_path(orden), method: :get do |f| %>
+	      			<%= f.select :condition, options_for_select([["Cocina","c"],["Despachado","d"],["Pagado","p"]]) %>
+	      			<%= f.submit "actualizar" %>
+	      		<% end  %>
+	      	</div>
+      	</div>
     <% end %>
-  <% end %>
+ <% end %>

@@ -3,11 +3,11 @@ layout 'bootstrap'
 
 	def index
 		#@orders = Order.all.includes(:dishes)
-		if user_signed_in?
-			@mis_ordenes = current_user.orders
-		elsif current_user.role == "admin"
-			@orders = Order.all.includes(:dishes)
-		end
+		@mis_ordenes = Order.all.includes(:dishes)
+		@mis_ordenes.each do |orden|
+			orden.cuenta = Order.find(orden.id).dishes.group("name").count
+			orden.suma = Order.find(orden.id).dishes.sum("price")
+		end		
 	end
 
 	def new
@@ -36,7 +36,25 @@ layout 'bootstrap'
 		redirect_to	edit_order_path(@order)		
 	end
 
+	def estado
+		@order = Order.find(params[:id])
+		if params[:condition] == "c"
+			@order.condition = "cocina"
+		end
+		@order.save
+		redirect_to order_path(@order)
+	end
+
+	def destroy
+		@order = Order.find(params[:id])
+    	#@order.dishes << Dish.find(params[:dish_id])
+    	@order.details.destroy
+    	redirect_to	edit_order_path(@order)	
+    end
+
 	def order_params
     	params.require(:order).permit(:title, :content, :created_at)
     end
+
+
 end

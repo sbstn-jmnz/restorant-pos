@@ -2,7 +2,7 @@
 <% @orders.each do |dish, cuenta| %>
 	<p> <%= dish %> (<%= cuenta %>) </p>
 <% end %>
-<p><%= @orders2 %></p>
+
 <p>Total = <%= @suma %></p>
 
 <h1>Agregar Plato</h1>
@@ -13,4 +13,5 @@
 <%= render 'form' %>
 <%= render :partial => 'dishes/dishesToOrders', collection:  @dishes, as: :dish, locals: {
 	order: @order}  %>
+<%= link_to 'Cerrar Pedido', estado_path %>
 <%= link_to 'Back', orders_path %>

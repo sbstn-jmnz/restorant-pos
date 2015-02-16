@@ -3,8 +3,6 @@ class Order < ActiveRecord::Base
   has_many :dishes, :through => :details
   belongs_to :user
 
-  def detalles(order_id)
-  	@detail = Detail.find(order_id)
-  	return @detail
-  end
+  attr_accessor :cuenta, :suma
+  
 end

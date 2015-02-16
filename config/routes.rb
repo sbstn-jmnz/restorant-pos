@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :dishes
   end
   get 'orders/add/:id2' => 'orders#add', as: :add
-  
+  get 'orders/estado/:id' => 'orders#estado', as: :estado
   
   devise_for :users
   devise_scope :users do
