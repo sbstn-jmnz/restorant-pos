@@ -38,11 +38,11 @@ layout 'bootstrap'
 
 	def estado
 		@order = Order.find(params[:id])
-		if params[:condition] == "c"
+		if @order.condition.nil?
 			@order.condition = "cocina"
 		end
 		@order.save
-		redirect_to order_path(@order)
+		redirect_to orders_path
 	end
 
 	def destroy

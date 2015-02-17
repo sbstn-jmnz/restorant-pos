@@ -6,10 +6,10 @@
 	      		<% orden.cuenta.each do |clave, valor| %>
 	      			<%= clave %> x<%= valor %><br>
 	      		<% end %>
-	      		<%= orden.condition %>
+	      		<%= orden.condition %><br>
 	      		Total = $<%= orden.suma %>
 	      		<%= form_for orden, url: estado_path(orden), method: :get do |f| %>
-	      			<%= f.select :condition, options_for_select([["Cocina","c"],["Despachado","d"],["Pagado","p"]]) %>
+	      			<%= f.select :condition, options_for_select([["-----","nil"],["Cocina","c"],["Despachado","d"],["Pagado","p"]]) %>
 	      			<%= f.submit "actualizar" %>
 	      		<% end  %>
 	      	</div>
