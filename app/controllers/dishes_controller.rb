@@ -29,7 +29,7 @@ def show
 end
 
 def popDish
-    detail = Detail.where(order_id: params[:id]).where(dish_id: params[:dish_id])
+    detail = Detail.where(order_id: params[:id]).where(dish_id: params[:dish_id]).first
     detail.destroy
     redirect_to edit_order_path(params[:id])
   end
