@@ -5,11 +5,15 @@ Rails.application.routes.draw do
   resources :dishes
 
   resources :orders do
-    resources :dishes
+    resources :dishes do
+      member do 
+        delete "popDish"
+      end
+    end
   end
   get 'orders/add/:id2' => 'orders#add', as: :add
   get 'orders/estado/:id' => 'orders#estado', as: :estado
-  
+
   devise_for :users
   devise_scope :users do
     get 'users', to: 'users#index'

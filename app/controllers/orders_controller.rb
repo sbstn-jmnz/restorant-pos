@@ -53,6 +53,7 @@ class OrdersController < ApplicationController
 		redirect_to	orders_url
 	end
 
+	
 	def order_params
 		params.require(:order).permit(:title, :content, :created_at, :condition)
 	end
