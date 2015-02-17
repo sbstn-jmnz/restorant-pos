@@ -9,9 +9,10 @@
 	      		<%= orden.condition %><br>
 	      		Total = $<%= orden.suma %>
 	      		<%= form_for orden, url: estado_path(orden), method: :get do |f| %>
-	      			<%= f.select :condition, options_for_select([["-----","nil"],["Cocina","c"],["Despachado","d"],["Pagado","p"]]) %>
+	      			<%= f.select :condition, options_for_select([["-----","nil"],["Cocina","cocina"],["Despachado","despachado"],["Pagado","pagado"]]) %>
 	      			<%= f.submit "actualizar" %>
 	      		<% end  %>
+	      		<td><%= link_to 'Destroy', orden, method: :delete, data: { confirm: 'Are you sure?' }  %></td>
 	      	</div>
       	</div>
     <% end %>

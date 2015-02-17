@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-layout 'bootstrap'
+	layout 'bootstrap'
 
 	def index
 		#@orders = Order.all.includes(:dishes)
@@ -40,6 +40,8 @@ layout 'bootstrap'
 		@order = Order.find(params[:id])
 		if @order.condition.nil?
 			@order.condition = "cocina"
+		else
+		 @order.condition = params[:order][:condition]
 		end
 		@order.save
 		redirect_to orders_path
@@ -47,14 +49,13 @@ layout 'bootstrap'
 
 	def destroy
 		@order = Order.find(params[:id])
-    	#@order.dishes << Dish.find(params[:dish_id])
-    	@order.details.destroy
-    	redirect_to	edit_order_path(@order)	
-    end
+		@order.destroy
+		redirect_to	orders_url
+	end
 
 	def order_params
-    	params.require(:order).permit(:title, :content, :created_at)
-    end
+		params.require(:order).permit(:title, :content, :created_at, :condition)
+	end
 
 
 end
