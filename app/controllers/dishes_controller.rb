@@ -10,11 +10,7 @@ class DishesController < ApplicationController
   end
 
   def create
-    @dish = Dish.create(dish_params)
-    respond_to do |format|    
-      format.html { redirect_to dishes_url }
-      format.js
-    end
+    @dish = Dish.create(dish_params)    
   end
 
   def update
@@ -29,10 +25,12 @@ def show
 end
 
 def popDish
-    detail = Detail.where(order_id: params[:id]).where(dish_id: params[:dish_id]).first
+  detail = Detail.where(order_id: params[:id]).where(dish_id: params[:dish_id]).first
+  if detail
     detail.destroy
-    redirect_to edit_order_path(params[:id])
   end
+  redirect_to edit_order_path(params[:id])
+end
 
 private
 

@@ -1,12 +1,13 @@
 class OrdersController < ApplicationController
+	before_action :authenticate_user!
 	layout 'bootstrap'
 
 	def index
 		#@orders = Order.all.includes(:dishes)
 		@mis_ordenes = Order.all.includes(:dishes)
 		@mis_ordenes.each do |orden|
-			orden.cuenta = Order.find(orden.id).dishes.group("name").count
-			orden.suma = Order.find(orden.id).dishes.sum("price")
+		orden.cuenta = Order.find(orden.id).dishes.group("name").count
+		orden.suma = Order.find(orden.id).dishes.sum("price")
 		end		
 	end
 

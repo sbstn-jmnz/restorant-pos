@@ -1,6 +1,7 @@
   <div class="col-md-5 col-md-offset-1">
     <h2>Dishes</h2>
   </div>
+  <% if can? :new, @dish %>
 <div class="row">
   <div class="col-md-2 col-md-offset-1">
     <%= link_to new_dish_path, remote: true do %>
@@ -8,6 +9,7 @@
     <% end %>
   </div>
 </div>
+<% end %>
   
 <div class="row">
   <div class="col-md-6 col-md-offset-2" id="dish-form" style="display:none"></div>

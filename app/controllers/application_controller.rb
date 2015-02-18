@@ -17,8 +17,8 @@ class ApplicationController < ActionController::Base
   end
   #Where to go after sign out
   def after_sign_out_path_for(user)
-    #Revisar, debe haber una mejor forma de redireccionar al formulario de ingreso
-    dishes_path
+    #al salir se vuelve al root que redirecciona al log in
+    "/"
   end
 
 
