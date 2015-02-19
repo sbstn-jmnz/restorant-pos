@@ -20,6 +20,4 @@ class ApplicationController < ActionController::Base
     #al salir se vuelve al root que redirecciona al log in
     "/"
   end
-
-
 end

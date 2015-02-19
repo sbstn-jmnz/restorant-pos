@@ -1,23 +1,19 @@
 <nav class="navbar navbar-default" role="navigation" >
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="/">El JamonPaltaPro</a>
+			<a class="navbar-brand" href="/">
+				<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+				El Jamon Palta Pro
+			</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<% if user_signed_in? %>
-					<li>
-					<li>Weeena, <%= current_user.email %></li>
-						<%= link_to("Log out", destroy_user_session_path, method: :delete) %>
-					</li>
+				<p class="navbar-text"> Hola <%= current_user.name %> | estas logeado como: <%= current_user.role %> | <%= link_to("Log out", destroy_user_session_path, method: :delete) %></p>				
 				<% else %>
-					<li><%= link_to "Sign in", new_user_session_path %></li>
-				<% end  %>
+				<p class="navbar-text"><%= link_to "Sign in", new_user_session_path %></p>
+				<% end %>
 			</ul>
 		</div>
 	</div>
 </nav>
-<% unless current_user.nil? %>
-<%= "email: #{current_user.email }" %>
-<%= "Role: #{current_user.role}" %>
-<% end %>

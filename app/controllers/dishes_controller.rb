@@ -1,8 +1,7 @@
 class DishesController < ApplicationController
-
   before_action :all_dishes, only: [:index, :create, :update, :destroy]
   before_action :set_dishes, only:[:edit,:update, :destroy, :show]
-  respond_to :html, :js
+  respond_to :js
   layout 'bootstrap'
 
   def new
@@ -15,7 +14,7 @@ class DishesController < ApplicationController
 
   def update
    @dish.update_attributes(dish_params)
- end
+  end
 
  def destroy
   @dish.destroy
