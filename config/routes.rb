@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   end
   get 'orders/add/:id2' => 'orders#add', as: :add
   get 'orders/estado/:id' => 'orders#estado', as: :estado
-
-  devise_for :users
+  
+  devise_for :users, controllers:{\
+    omniauth_callbacks: "users/omniauth_callbacks"\
+  }
   devise_scope :users do
     get 'users', to: 'users#index'
     #get 'users/sign_in', to: 'users/sessions#new', as: 'new_user_session'
