@@ -8,9 +8,8 @@ class Ability
     elsif user.role == "waitress"
         can :read, Dish
     elsif user.role == "user"
-        can :read, Post
-        can :create, [Post, Comment]
-        can [:update, :destroy], [Post, Comment], user_id: user.id
+        can :read, Dish
+        
     elsif user.role == "cashier"    
     end
 
